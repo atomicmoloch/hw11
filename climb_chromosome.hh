@@ -6,6 +6,8 @@
 #include <cassert>
 
 class ClimbChromosome: public Chromosome {
+  ClimbChromosome(const ClimbChromosome&) = default;
+  ClimbChromosome(ClimbChromosome&&) = default;
 public:
   virtual void mutate() override;
 

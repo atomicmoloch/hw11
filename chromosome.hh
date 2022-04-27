@@ -15,10 +15,7 @@
 
 class Chromosome {
    // Disable public copying of objects for polymorphism:
-  Chromosome(const Chromosome&) = default;
-  Chromosome(Chromosome&&) = default;
-  Chromosome& operator=(const Chromosome&) = default;
-  Chromosome& operator=(Chromosome&&) = default;
+
 
  public:
   // Creation method for new Chromsomoe. Saves a copy of the cities and
@@ -86,4 +83,9 @@ class Chromosome {
   Cities::permutation_t order_;  // The actual permutation of this chromosome
 
   std::default_random_engine generator_; // A random number generator for the various methods
+
+  Chromosome(const Chromosome&) = default;
+  Chromosome(Chromosome&&) = default;
+  Chromosome& operator=(const Chromosome&) = default;
+  Chromosome& operator=(Chromosome&&) = default;
 };
