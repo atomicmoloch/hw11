@@ -5,7 +5,7 @@
  */
 
 #include "cities.hh"
-#include "deme.hh"
+#include "tournament_deme.hh"
 
 #include <algorithm>
 #include <cassert>
@@ -95,7 +95,7 @@ ga_search(const Cities& cities,
   auto best_dist = 1e100;
   auto best_ordering = Cities::permutation_t(cities.size());
 
-  Deme deme(&cities, pop_size, mutation_rate);
+  TournamentDeme deme(&cities, pop_size, mutation_rate);
 
   // Evolve the population to make it fitter and keep track of
   // the shortest distance generated
