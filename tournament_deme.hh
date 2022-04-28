@@ -4,14 +4,13 @@
 #include "deme.hh"
 #include <cassert>
 
-class TournamentDeme : Deme
+class TournamentDeme: public Deme
 {
 public:
-  virtual void compute_next_generation();
-
+  TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate);
+  void compute_next_generation();
 
 protected:
+    Chromosome* select_parent();
 
-    virtual Chromosome* select_parent();
-
-}
+};
