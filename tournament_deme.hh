@@ -7,7 +7,8 @@
 class TournamentDeme: public Deme
 {
 public:
-  TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate);
+  virtual TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate);
+  virtual ~TournamentDeme() = default;
   void compute_next_generation();
 
 protected:
