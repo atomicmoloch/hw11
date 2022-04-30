@@ -1,8 +1,8 @@
 #include "tournament_deme.hh"
 
-TournamentDeme::TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)
+TournamentDeme::TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate) : Deme::Deme(cities_ptr, pop_size, mut_rate)
 {
-    this.Deme(cities_ptr, pop_size, mut_rate);
+    //this.Deme(cities_ptr, pop_size, mut_rate);
 }
 
 void TournamentDeme::compute_next_generation()
