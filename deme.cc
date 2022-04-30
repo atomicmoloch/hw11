@@ -7,6 +7,14 @@
 #include "deme.hh"
 #include <cassert>
 
+Deme::~Deme()
+{
+    while (pop_.size() > 0)
+    {
+        pop_.pop_back();
+    }
+}
+
 // Generate a Deme of the specified size with all-random chromosomes.
 // Also receives a mutation rate in the range [0-1].
 Deme::Deme(const Cities* cities_ptr, unsigned pop_size, double mut_rate)

@@ -4,6 +4,13 @@ TournamentDeme::TournamentDeme(const Cities* cities_ptr, unsigned pop_size, doub
 {
     //this.Deme(cities_ptr, pop_size, mut_rate);
 }
+TournamentDeme::~TournamentDeme()
+{
+    while (pop_.size() > 0)
+    {
+        pop_.pop_back();
+    }
+}
 
 void TournamentDeme::compute_next_generation()
 {
