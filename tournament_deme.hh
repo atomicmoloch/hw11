@@ -10,6 +10,7 @@ public:
   TournamentDeme(const Cities* cities_ptr, unsigned pop_size, double mut_rate);
   ~TournamentDeme() = default;
   void compute_next_generation();
+  int get_size();
 
 protected:
     Chromosome* select_parent();

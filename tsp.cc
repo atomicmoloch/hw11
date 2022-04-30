@@ -95,7 +95,7 @@ ga_search(const Cities& cities,
   auto best_dist = 1e100;
   auto best_ordering = Cities::permutation_t(cities.size());
 
-  TournamentDeme deme(&cities, pop_size, mutation_rate);
+  Deme deme(&cities, pop_size, mutation_rate);
 
   // Evolve the population to make it fitter and keep track of
   // the shortest distance generated
@@ -106,6 +106,32 @@ ga_search(const Cities& cities,
     // Find best individual in this population
     const auto ordering = deme.get_best()->get_ordering();
     if (is_improved(cities, ordering, best_dist, i * pop_size)) {
+      best_ordering = ordering;
+    }
+  }
+  return best_ordering;
+}
+
+Cities::permutation_t
+tourn_search(const Cities& cities,
+          unsigned pop_size,
+          double mutation_rate)
+{
+  auto best_dist = 1e100;
+  auto best_ordering = Cities::permutation_t(cities.size());
+
+  TournamentDeme deme(&cities, pop_size, mutation_rate);
+
+  // Evolve the population to make it fitter and keep track of
+  // the shortest distance generated
+uint64_t i = pop_size;
+  while (deme.get_size() > 3) {
+    std::cout << deme.get_size() << ":\n";
+    deme.compute_next_generation();    // generate next generation
+    i += deme.get_size();
+    // Find best individual in this population
+    const auto ordering = deme.get_best()->get_ordering();
+    if (is_improved(cities, ordering, best_dist, i)) {
       best_ordering = ordering;
     }
   }
@@ -124,13 +150,13 @@ int main(int argc, char** argv)
   const auto cities = Cities(argv[1]);
   const auto pop_size = atoi(argv[2]);
   const auto mut_rate = atof(argv[3]);
-  constexpr unsigned NUM_ITER = 1000000;
+ // constexpr unsigned NUM_ITER = 1000000;
   assert(cities.size() > 0 && "Did you actually read the input file successfully?");
   std::cout << "Read-in successful. Starting search.\n";
 
 //  const auto best_ordering = exhaustive_search(cities);
 //  const auto best_ordering = randomized_search(cities, NUM_ITER);
-  const auto best_ordering = ga_search(cities, NUM_ITER, pop_size, mut_rate);
+  const auto best_ordering = tourn_search(cities, pop_size, mut_rate);
 
   auto out = std::ofstream("shortest.tsv");
   if (!out.is_open()) {

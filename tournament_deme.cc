@@ -70,3 +70,8 @@ Chromosome* TournamentDeme::select_parent()
     }
     return retval; //returns better chromosome
 }
+
+int TournamentDeme::get_size()
+{
+    return pop_.size();
+}
