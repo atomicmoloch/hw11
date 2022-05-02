@@ -14,5 +14,4 @@ public:
 
 protected:
     Chromosome* select_parent();
-
 };

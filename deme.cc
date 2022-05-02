@@ -11,6 +11,7 @@ Deme::~Deme()
 {
     while (pop_.size() > 0)
     {
+        delete pop_.back();
         pop_.pop_back();
     }
 }
@@ -65,7 +66,14 @@ void Deme::compute_next_generation()
 
     if (newchroms.size() > pop_.size())
     {
+        delete newchroms.back();
         newchroms.pop_back();
+    }
+
+    while (pop_.size() > 0)
+    {
+        delete pop_.back();
+        pop_.pop_back();
     }
     pop_ = newchroms;
 }

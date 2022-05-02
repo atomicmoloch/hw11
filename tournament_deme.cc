@@ -8,6 +8,7 @@ TournamentDeme::~TournamentDeme()
 {
     while (pop_.size() > 0)
     {
+        delete pop_.back();
         pop_.pop_back();
     }
 }
@@ -36,6 +37,11 @@ void TournamentDeme::compute_next_generation()
     if (newchroms.size() > pop_.size())
     {
         newchroms.pop_back();
+    }
+        while (pop_.size() > 0)
+    {
+        delete pop_.back();
+        pop_.pop_back();
     }
     pop_ = newchroms;
 }
@@ -66,12 +72,16 @@ Chromosome* TournamentDeme::select_parent()
 
     if (indx > ind2) //erases both from pop_
     {
+        delete pop_[indx];
         pop_.erase(pop_.begin() + indx);
+        delete pop_[ind2];
         pop_.erase(pop_.begin() + ind2);
     }
     else
     {
+        delete pop_[ind2];
         pop_.erase(pop_.begin() + ind2);
+        delete pop_[indx];
         pop_.erase(pop_.begin() + indx);
 
     }
