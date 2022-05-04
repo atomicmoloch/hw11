@@ -64,24 +64,22 @@ Chromosome* TournamentDeme::select_parent()
     if (pop_[indx]->get_fitness() > pop_[ind2]->get_fitness()) //sets retval depending on which is better
     {
         retval = pop_[indx];
+        delete pop_[ind2];
     }
     else
     {
         retval = pop_[ind2];
+        delete pop_[indx];
     }
 
     if (indx > ind2) //erases both from pop_
     {
-        delete pop_[indx];
         pop_.erase(pop_.begin() + indx);
-        delete pop_[ind2];
         pop_.erase(pop_.begin() + ind2);
     }
     else
     {
-        delete pop_[ind2];
         pop_.erase(pop_.begin() + ind2);
-        delete pop_[indx];
         pop_.erase(pop_.begin() + indx);
 
     }
