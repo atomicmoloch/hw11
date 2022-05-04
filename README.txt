@@ -18,3 +18,5 @@ comment it in such a way that you can follow the algorithm as it goes.
 
 There were also some issues with the clone method that were solved when I
 realized that Chromosome's constructors were private, not protected.
+
+There are memory errors. I fixed some of them. I tried to fix the rest. It was a failure.
