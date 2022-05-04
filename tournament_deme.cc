@@ -6,9 +6,10 @@ TournamentDeme::TournamentDeme(const Cities* cities_ptr, unsigned pop_size, doub
 }
 TournamentDeme::~TournamentDeme()
 {
+   // std::cout << "this works";
     while (pop_.size() > 0)
     {
-        delete pop_.back();
+        delete pop_[pop_.size() - 1];
         pop_.pop_back();
     }
 }
@@ -16,7 +17,7 @@ TournamentDeme::~TournamentDeme()
 void TournamentDeme::compute_next_generation()
 {
     std::vector<Chromosome*> newchroms;
-    while (newchroms.size() < pop_.size())
+    while (pop_.size() > 3)
     {
         auto chrom1 = select_parent();
         auto chrom2 = select_parent();
@@ -34,9 +35,9 @@ void TournamentDeme::compute_next_generation()
         newchroms.push_back(tempchroms.second);
     }
 
-        while (pop_.size() > 0)
+    while (pop_.size() > 0)
     {
-        delete pop_.back();
+        newchroms.push_back(pop_.back());
         pop_.pop_back();
     }
     pop_ = newchroms;

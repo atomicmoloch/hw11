@@ -124,17 +124,18 @@ tourn_search(const Cities& cities,
 
   // Evolve the population to make it fitter and keep track of
   // the shortest distance generated
-uint64_t i = pop_size;
+uint64_t i = 0;
   while (deme.get_size() > 3) {
-    std::cout << deme.get_size() << ":\n";
+    //std::cout << deme.get_size() << ":\n";
     deme.compute_next_generation();    // generate next generation
-    i = deme.get_size();
+    i+= pop_size;
     // Find best individual in this population
     const auto ordering = deme.get_best()->get_ordering();
     if (is_improved(cities, ordering, best_dist, i)) {
       best_ordering = ordering;
     }
   }
+  //deme.~TournamentDeme();
   return best_ordering;
 }
 
