@@ -128,7 +128,7 @@ uint64_t i = pop_size;
   while (deme.get_size() > 3) {
     std::cout << deme.get_size() << ":\n";
     deme.compute_next_generation();    // generate next generation
-    i += deme.get_size();
+    i = deme.get_size();
     // Find best individual in this population
     const auto ordering = deme.get_best()->get_ordering();
     if (is_improved(cities, ordering, best_dist, i)) {

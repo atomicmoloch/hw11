@@ -34,10 +34,6 @@ void TournamentDeme::compute_next_generation()
         newchroms.push_back(tempchroms.second);
     }
 
-    if (newchroms.size() > pop_.size())
-    {
-        newchroms.pop_back();
-    }
         while (pop_.size() > 0)
     {
         delete pop_.back();
